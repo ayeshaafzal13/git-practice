@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone Gym - CSS Layout Demo</title>
+    <style>
+        /* RESET - Box Model Demonstration */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* ===== CSS GRID for main layout ===== */
+        .container {
+            display: grid;
+            grid-template-rows: auto auto auto auto;
+        }
+
+        /* ===== FLEXBOX Example 1: Navigation ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1a1a2e;
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #e94560;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links li {
+            cursor: pointer;
+        }
+
+        .nav-links li:hover {
+            color: #e94560;
+        }
+
+        /* ===== RELATIVE + ABSOLUTE Positioning ===== */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #16213e, #0f3460);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #e94560;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: #e94560;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        /* ===== CSS GRID for classes (Responsive) ===== */
+        .classes-section {
+            padding: 3rem 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .classes-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* RESPONSIVE GRID */
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* BOX MODEL demonstration on cards */
+        .class-card {
+            background-color: white;
+            padding: 1.8rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .class-card h3 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .class-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .class-time {
+            color: #e94560;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        /* ===== FLEXBOX Example 2: Two-column layout ===== */
+        .about-section {
+            padding: 3rem 2rem;
+            background-color: white;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            flex: 2;
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .main-content h2 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .main-content p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .sidebar {
+            flex: 1;
+            background-color: #1a1a2e;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 1rem;
+            color: #e94560;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        /* ===== FLEXBOX Example 3: Footer ===== */
+        .footer {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links span {
+            cursor: pointer;
+        }
+
+        .footer-links span:hover {
+            color: #e94560;
+        }
+
+        /* ===== FIXED POSITION Button ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #e94560;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-top:hover {
+            background-color: #c73e54;
+        }
+
+        /* ===== RESPONSIVE MEDIA QUERY ===== */
+        @media (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+            
+            .classes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- NAVIGATION - Flexbox Example 1 -->
+        <nav class="navbar">
+            <div class="logo">💪 FitZone <span>Gym</span></div>
+            <ul class="nav-links">
+                <li>Home</li>
+                <li>Classes</li>
+                <li>Membership</li>
+                <li>Trainers</li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+
+        <!-- HERO SECTION - Relative + Absolute Positioning -->
+        <div class="hero">
+            <div class="hero-badge">🔥 Limited Time Offer</div>
+            <h1>Transform Your Body <span>Transform Your Life</span></h1>
+            <p>Join FitZone Gym today and get 30% off on annual membership</p>
+        </div>
+
+        <!-- CLASSES SECTION - CSS Grid (Responsive) -->
+        <div class="classes-section">
+            <h2>Our Popular Classes</h2>
+            <p class="section-subtitle">Choose from a variety of fitness programs</p>
+            <div class="classes-grid">
+                <!-- Card 1 -->
+                <div class="class-card">
+                    <h3>🏋️ Strength Training</h3>
+                    <p>Build muscle and increase power with our expert-guided strength training sessions.</p>
+                    <div class="class-time">⏰ Mon/Wed/Fri - 6:00 PM</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="class-card">
+                    <h3>🧘 Yoga & Meditation</h3>
+                    <p>Improve flexibility, reduce stress, and find inner peace with our yoga classes.</p>
+                    <div class="class-time">⏰ Tue/Thu - 8:00 AM</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="class-card">
+                    <h3>💃 Zumba Dance</h3>
+                    <p>Burn calories while having fun with high-energy dance fitness routines.</p>
+                    <div class="class-time">⏰ Mon/Wed/Fri - 7:00 PM</div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="class-card">
+                    <h3>🚴 Spin Cycling</h3>
+                    <p>Indoor cycling workout that builds endurance and burns fat fast.</p>
+                    <div class="class-time">⏰ Tue/Thu/Sat - 5:30 PM</div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="class-card">
+                    <h3>🥊 Boxing & Kickboxing</h3>
+                    <p>Release stress and build confidence with combat training.</p>
+                    <div class="class-time">⏰ Mon/Wed - 8:00 PM</div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="class-card">
+                    <h3>🏊 Aqua Fitness</h3>
+                    <p>Low-impact workout in the pool perfect for all fitness levels.</p>
+                    <div class="class-time">⏰ Mon/Wed/Fri - 9:00 AM</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT SECTION - Flexbox Two-Column Layout -->
+        <div class="about-section">
+            <div class="flex-container">
+                <div class="main-content">
+                    <h2>Why FitZone Gym?</h2>
+                    <p style="margin-top: 1rem;">Since 2015, FitZone has been the premier fitness destination in the city. With state-of-the-art equipment, certified personal trainers, and a supportive community, we help you achieve your fitness goals.</p>
+                    <p style="margin-top: 1rem;">Our facility spans over 10,000 sq ft with separate zones for cardio, strength training, functional fitness, and group classes. We also offer locker rooms, showers, and a smoothie bar.</p>
+                    <p style="margin-top: 1rem;">Join thousands of satisfied members who have transformed their lives at FitZone Gym.</p>
+                </div>
+                <div class="sidebar">
+                    <h3>🏆 Why Members Love Us</h3>
+                    <ul style="margin-top: 1rem;">
+                        <li>✓ 24/7 Gym Access</li>
+                        <li>✓ Certified Personal Trainers</li>
+                        <li>✓ 50+ Group Classes Weekly</li>
+                        <li>✓ Sauna & Steam Room</li>
+                        <li>✓ Free Parking</li>
+                        <li>✓ No Contract Options</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER - Flexbox Example 3 -->
+        <footer class="footer">
+            <p>© 2026 FitZone Gym. All rights reserved.</p>
+            <div class="footer-links">
+                <span>📞 +1 234 567 8900</span>
+                <span>📧 info@fitzonegym.com</span>
+                <span>📍 123 Fitness Street</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- FIXED POSITION - Back to Top Button -->
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+</body>
+</html>
